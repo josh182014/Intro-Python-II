@@ -1,3 +1,4 @@
+import os
 from room import Room
 from player import Player
 
@@ -53,11 +54,12 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
-
+os.system('cls' if os.name == 'nt' else 'clear')
 direction = input('Ready to explore? Press any key to continue (Press q anytime to quit) ')
 # gameplay loop
 
 while not direction == 'q':
+    os.system('cls' if os.name == 'nt' else 'clear')
     print(f'You are currently {player.current_room.name}\n{player.current_room.description}')
     direction = input('Which direction would you like to go?\n[n] = North\n[e] = East\n[s] = South\n[w] = West\n(Press q anytime to quit) ')
     if direction == 'n':
@@ -79,7 +81,7 @@ while not direction == 'q':
         player.current_room = player.current_room.s_to
 
     elif direction == 'w':
-        if player.current_room.n_to is None:
+        if player.current_room.w_to is None:
             print("There's nothing in that direction. Please choose a different direction.")
             continue
         player.current_room = player.current_room.w_to
