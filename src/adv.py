@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,6 +39,9 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player(room['outside'])
+def test:
+    hi
 
 # Write a loop that:
 #
@@ -49,3 +53,37 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+direction = input('Ready to explore? Press any key to continue (Press q anytime to quit) ')
+# gameplay loop
+
+while not direction == 'q':
+    print(f'You are currently {player.current_room.name}\n{player.current_room.description}')
+    direction = input('Which direction would you like to go?\n[n] = North\n[e] = East\n[s] = South\n[w] = West\n(Press q anytime to quit) ')
+    if direction == 'n':
+        if player.current_room.n_to == None:
+            print("There's nothing in that direction. Please choose a different direction.")
+            continue
+        player.current_room = player.current_room.n_to
+
+    elif direction == 'e':
+        if player.current_room.e_to == None:
+            print("There's nothing in that direction. Please choose a different direction.")
+            continue
+        player.current_room = player.current_room.e_to
+
+    elif direction == 's':
+        if player.current_room.s_to == None:
+            print("There's nothing in that direction. Please choose a different direction.")
+            continue
+        player.current_room = player.current_room.s_to
+
+    elif direction == 'w':
+        if player.current_room.n_to == None:
+            print("There's nothing in that direction. Please choose a different direction.")
+            continue
+        player.current_room = player.current_room.w_to
+
+    else:
+        print("You're doing it wrong. Please choose a direction or pess 'q' to quit.")
