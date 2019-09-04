@@ -61,28 +61,30 @@ while not direction == 'q':
     print(f'You are currently {player.current_room.name}\n{player.current_room.description}')
     direction = input('Which direction would you like to go?\n[n] = North\n[e] = East\n[s] = South\n[w] = West\n(Press q anytime to quit) ')
     if direction == 'n':
-        if player.current_room.n_to == None:
+        if player.current_room.n_to is None:
             print("There's nothing in that direction. Please choose a different direction.")
             continue
         player.current_room = player.current_room.n_to
 
     elif direction == 'e':
-        if player.current_room.e_to == None:
+        if player.current_room.e_to is None:
             print("There's nothing in that direction. Please choose a different direction.")
             continue
         player.current_room = player.current_room.e_to
 
     elif direction == 's':
-        if player.current_room.s_to == None:
+        if player.current_room.s_to is None:
             print("There's nothing in that direction. Please choose a different direction.")
             continue
         player.current_room = player.current_room.s_to
 
     elif direction == 'w':
-        if player.current_room.n_to == None:
+        if player.current_room.n_to is None:
             print("There's nothing in that direction. Please choose a different direction.")
             continue
         player.current_room = player.current_room.w_to
+    elif direction == 'q':
+        break
 
     else:
         print("You're doing it wrong. Please choose a direction or pess 'q' to quit.")
