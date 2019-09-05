@@ -55,37 +55,45 @@ player = Player(room['outside'])
 # If the user enters "q", quit the game.
 
 os.system('cls' if os.name == 'nt' else 'clear')
-direction = input('Ready to explore? Press any key to continue (Press q anytime to quit) ')
+direction = input('Ready to explore? Press any key '
+                  'to continue (Press q anytime to quit) ')
 # gameplay loop
 
 while not direction == 'q':
-    print(f'You are currently {player.current_room.name}\n{player.current_room.description}')
-    direction = input('Which direction would you like to go?\n[n] = North\n[e] = East\n[s] = South\n[w] = West\n(Press q anytime to quit)\nDirection: ')
+    print(f'You are currently {player.current_room.name}\n'
+          f'{player.current_room.description}')
+    direction = input('Which direction would you like to go?\n[n] = '
+                      'North\n[e] = East\n[s] = South\n[w] = West\n(Press '
+                      'q anytime to quit)\nDirection: ')
     if direction == 'n':
         os.system('cls' if os.name == 'nt' else 'clear')
         if player.current_room.n_to is None:
-            print("There's nothing in that direction. Please choose a different direction.")
+            print("There's nothing in that direction. Please choose a"
+                  "different direction.")
             continue
         player.current_room = player.current_room.n_to
 
     elif direction == 'e':
         os.system('cls' if os.name == 'nt' else 'clear')
         if player.current_room.e_to is None:
-            print("There's nothing in that direction. Please choose a different direction.")
+            print("There's nothing in that direction. Please choose a "
+                  "different direction.")
             continue
         player.current_room = player.current_room.e_to
 
     elif direction == 's':
         os.system('cls' if os.name == 'nt' else 'clear')
         if player.current_room.s_to is None:
-            print("There's nothing in that direction. Please choose a different direction.")
+            print("There's nothing in that direction. Please choose a "
+                  "different direction.")
             continue
         player.current_room = player.current_room.s_to
 
     elif direction == 'w':
         os.system('cls' if os.name == 'nt' else 'clear')
         if player.current_room.w_to is None:
-            print("There's nothing in that direction. Please choose a different direction.")
+            print("There's nothing in that direction. Please choose a "
+                  "different direction.")
             continue
         player.current_room = player.current_room.w_to
     elif direction == 'q':
@@ -93,4 +101,5 @@ while not direction == 'q':
         break
 
     else:
-        print("You're doing it wrong. Please choose a direction or pess 'q' to quit.")
+        print("You're doing it wrong. Please choose a "
+              "direction or pess 'q' to quit.")
