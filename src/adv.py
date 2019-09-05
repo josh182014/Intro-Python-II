@@ -119,7 +119,7 @@ while not direction == 'q':
             continue
         player.current_room = player.current_room.w_to
 
-    elif direction == 'i':
+    elif direction == 'i' or direction == 'inventory':
         os.system('cls' if os.name == 'nt' else 'clear')
         if len(player.return_items()) > 0:
             print(f'Your Inventory: ')
