@@ -129,6 +129,7 @@ while not direction == 'q':
             if items[direction[1]] in player.current_room.return_items():
                 player.current_room.remove_item(items[direction[1]])
                 player.add_item(items[direction[1]])
+                print(f'{items[direction[1]].on_take()} from {player.current_room.name}')
                 print(f'Your Inventory: ')
                 player.print_items()
 
@@ -137,6 +138,7 @@ while not direction == 'q':
             if items[direction[1]] in player.return_items():
                 player.current_room.add_item(items[direction[1]])
                 player.remove_item(items[direction[1]])
+                print(f'{items[direction[1]].on_drop()} in {player.current_room.name}')
                 print(f'Your Inventory: ')
                 player.print_items()
 
