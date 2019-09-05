@@ -25,9 +25,9 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 items = {
-    'apple': Item("apple", "It's an apple what more do you want me to say."),
+    'sword': Item("sword", "Made of steel, this baby will cut through anything. (Except steel)."),
     'torch': Item('torch', "It lights up to help you see."),
-    'something': Item('something', "it's something")
+    'gold': Item('gold', "A bag of gold coins! You're rich.")
 }
 
 # Link rooms together
@@ -41,7 +41,9 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-room['outside'].add_item(items['apple'])
+room['outside'].add_item(items['torch'])
+room['treasure'].add_item(items['sword'])
+room['treasure'].add_item(items['gold'])
 
 #
 # Main
@@ -49,9 +51,6 @@ room['outside'].add_item(items['apple'])
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player(room['outside'])
-player.add_item(items['torch'])
-player.current_room.print_items()
-player.print_items()
 
 # Write a loop that:
 #
@@ -64,13 +63,19 @@ player.print_items()
 #
 # If the user enters "q", quit the game.
 
-# instructions = 'Ready to explore?\nInstructions: Press Press any key to continue (Press q anytime to quit) '
+instructions = "Press q to quit at any time.\nPress i to check your inventory.\nPress h for help.\nTo Move:\n[n] = North\n[e] = East\n[s] = South\n[w] = West\nTo pick something up: 'take [item]'.\nTo drop an item: 'drop [item]'.\nPress any key to exit help menu."
 
 os.system('cls' if os.name == 'nt' else 'clear')
 direction = input('Ready to explore? Press any key '
-                  'to continue (Press q anytime to quit) ')
+                  'to continue (Press h for help, press q anytime to quit) ')
 # gameplay loop
+if direction == 'h':
+    direction = input(instructions)
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 while not direction == 'q':
+    if not items['torch'] in player.return_items() and not player.current_room.name == 'Outside Cave Entrance' and items['torch'] in room['outside'].return_items():
+        print('Sure is dark in here, maybe you can find a torch somewhere.')
     print(f'You are currently {player.current_room.name}\n'
           f'{player.current_room.description}')
 
@@ -121,6 +126,11 @@ while not direction == 'q':
             player.print_items()
         else:
             print("You don't have any items! Look around to find stuff.")
+
+    elif direction == 'h':
+        os.system('cls' if os.name == 'nt' else 'clear')
+        direction = input(instructions)
+        os.system('cls' if os.name == 'nt' else 'clear')
 
     elif len(direction.split(' ')) > 1:
         direction = direction.split(' ')
